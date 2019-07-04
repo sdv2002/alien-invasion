@@ -19,7 +19,7 @@ def run_game():
         (ai_settings.screen_width, ai_settings.screen_height))
     pygame.display.set_caption("Alien Invasion")
     # Create a play button.
-    play_button = Button(ai_settings, screen, "Play")
+    play_button = Button(screen, "Play")
     # Create instances of GameStats and Scoreboard.
     stats = GameStats(ai_settings)
     sb = Scoreboard(ai_settings, screen, stats)
@@ -28,7 +28,7 @@ def run_game():
     bullets = Group()
     aliens = Group()
     # Creating a starry sky
-    stars = gf.create_starry_sky(ai_settings, screen)
+    stars = gf.create_starry_sky(ai_settings)
     # Creating a fleet of aliens.
     gf.create_fleet(ai_settings, screen, ship, aliens)
 

@@ -7,11 +7,10 @@ import pygame
 import random
 from bullet import Bullet
 from alien import Alien
-from game_stats import GameStats
 
 
 def check_keydown_events(event, ai_settings, stats, screen,
-                         ship, aliens, bullets):
+                         ship, bullets):
     """Reacts to keystrokes."""
     if event.key == pygame.K_RIGHT:
         ship.moving_right = True
@@ -36,7 +35,7 @@ def fire_bullet(ai_settings, screen, ship, bullets):
         new_bullet = Bullet(ai_settings, screen, ship)
         bullets.add(new_bullet)
         # gunfire
-        pygame.mixer.Sound('images\laser.wav').play()
+        pygame.mixer.Sound(r'images\laser.wav').play()
 
 
 def check_keyup_events(event, ship):
@@ -59,7 +58,7 @@ def check_events(ai_settings, screen, stats, sb, play_button,
             exit_with_saving(stats)
         elif event.type == pygame.KEYDOWN:
             check_keydown_events(event, ai_settings, stats,
-                                 screen, ship, aliens, bullets)
+                                 screen, ship, bullets)
         elif event.type == pygame.KEYUP:
             check_keyup_events(event, ship)
         elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -189,11 +188,10 @@ def create_fleet(ai_settings, screen, ship, aliens):
                          row_number)
 
 
-def create_starry_sky(ai_settings, screen):
+def create_starry_sky(ai_settings):
     """Creates a dictionary with random dots for the starry sky."""
     stars = {}
     for i in range(800):
-        WHITE = (255, 255, 255)
         a = random.randint(0, ai_settings.screen_width)
         b = random.randint(0, ai_settings.screen_height)
         stars[a] = b
@@ -268,7 +266,7 @@ def check_high_score(stats, sb):
 
 def exit_with_saving(stats):
     """Writes a record points to the file and closes the program"""
-    filename = 'images\high_score.json'
+    filename = r'images\high_score.json'
     with open(filename, 'w') as file_object:
         json.dump(stats.high_score, file_object)
     sys.exit()

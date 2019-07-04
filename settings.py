@@ -1,6 +1,7 @@
 """module with class Settings"""
 
-class Settings():
+
+class Settings:
     """Class to store all the game settings."""
     def __init__(self):
         """Initialisere static game settings."""
@@ -28,6 +29,11 @@ class Settings():
         self.speedup_scale = 1.1
         # Alien value growth rate
         self.score_scale = 1.1
+        self.ship_speed_factor = None
+        self.bullet_speed_factor = None
+        self.alien_speed_factor = None
+        self.fleet_direction = None
+        self.alien_points = None
         self.initialize_dynamic_settings()
         
     def initialize_dynamic_settings(self):

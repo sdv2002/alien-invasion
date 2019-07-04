@@ -24,8 +24,9 @@ def check_keydown_events(event, ai_settings, stats, screen,
         fire_bullet(ai_settings, screen, ship, bullets)
     elif event.key == pygame.K_q:
         exit_with_saving(stats)
-    # elif event.key == pygame.K_p and not stats.game_active:
-    #     start_game(ai_settings, screen, stats, ship, aliens, bullets)
+    elif event.key == pygame.K_p:
+        stats.game_active = not stats.game_active
+        stats.pause = not stats.pause
 
 
 def fire_bullet(ai_settings, screen, ship, bullets):
@@ -107,7 +108,7 @@ def update_screen(ai_settings, screen, stats, sb, ship, aliens,
     # Invoice withdrawal.
     sb.show_score()
     # The Play button is displayed if the game is inactive.
-    if not stats.game_active:
+    if not stats.game_active and not stats.pause:
         play_button.draw_button()
     # Displays the last drawn screen.
     pygame.display.flip()

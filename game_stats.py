@@ -19,6 +19,7 @@ class GameStats:
         self.high_score = content
         # The game starts in an inactive state.
         self.game_active = False
+        self.pause = False
         self.ships_left = None
         self.score = None
         self.level = None

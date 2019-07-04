@@ -1,12 +1,14 @@
+"""module with class GameStats"""
+
 import json
 
 class GameStats():
-    """Отслеживание статистики для игры Alien Invasion."""
+    """Stat tracking for the game"""
     
     def __init__(self, ai_settings):
-        """Инициализирует статистику."""
+        """Initialisere statistics."""
         self.ai_settings = ai_settings
-        # Считывание рекорда из файла
+        # Read record from file
         filename = 'images\high_score.json'
         try:
             with open(filename,  'r') as file_object:
@@ -14,13 +16,13 @@ class GameStats():
         except FileNotFoundError:
             content = 0
         self.high_score = content
-        # Игра Alien Invasion запускается в неактивном состоянии.
+        # The game starts in an inactive state.
         self.game_active = False
         self.reset_stats()
         
     
     def reset_stats(self):
-        """Инициализирует статистику, изменяющуюся в ходе игры."""
+        """Initialisere statistics, changing the course of the game."""
         self.ships_left = self.ai_settings.ship_limit
         self.score = 0
         self.level = 1

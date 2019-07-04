@@ -1,35 +1,37 @@
+"""module with class Alien"""
+
 import pygame
 from pygame.sprite import Sprite
 
 class Alien(Sprite):
-    """Класс, представляющий одного пришельца."""
+    """A class that represents one alien."""
     
     def __init__(self, ai_settings, screen):
-        """Инициализирует пришельца и задает его начальную позицию."""
+        """Initializes an alien and sets its starting position."""
         super(Alien, self).__init__()
         self.screen = screen
         self.ai_settings = ai_settings
-        # Загрузка изображения пришельца и назначение атрибута rect.
+        # Loading the alien image and assigning the rect attribute.
         self.image = pygame.image.load('images/alien.bmp')
         self.rect = self.image.get_rect()
-        # Каждый новый пришелец появляется в левом верхнем углу экрана.
+        # Each new alien appears in the upper left corner of the screen.
         self.rect.x = self.rect.width
         self.rect.y = self.rect.height
-        # Сохранение точной позиции пришельца.
+        # Preserving the exact position of the alien.
         self.x = float(self.rect.x)
     
     def blitme(self):
-        """Выводит пришельца в текущем положении."""
+        """Displays the alien in the current position."""
         self.screen.blit(self.image, self.rect)
     
     def update(self):
-        """Перемещает пришельца влево или вправо."""
+        """Moves the alien left or right."""
         self.x += (self.ai_settings.alien_speed_factor *
                         self.ai_settings.fleet_direction)
         self.rect.x = self.x
         
     def check_edges(self):
-        """Возвращает True, если пришелец находится у края экрана."""
+        """Returns True if the alien is at the edge of the screen."""
         screen_rect = self.screen.get_rect()
         if self.rect.right >= screen_rect.right:
             return True

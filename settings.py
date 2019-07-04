@@ -1,47 +1,48 @@
+"""module with class Settings"""
+
 class Settings():
-    """Класс для хранения всех настроек игры Alien Invasion."""
+    """Class to store all the game settings."""
     def __init__(self):
-        """Инициализирует статические настройки игры."""
-        # Параметры экрана
+        """Initialisere static game settings."""
+        # Screen parameters
         self.screen_width = 700
         self.screen_height = 500
         self.bg_color = (0, 0, 0)
         
-        # Цвет звезды
+        # Color star
         self.star_color = (255, 255, 255)
         
-        # Настройки корабля
+        # Ship settings
         self.ship_limit = 3
         
-        # Параметры пули
+        # Bullet parameters
         self.bullet_width = 3
         self.bullet_height = 15
         self.bullet_color = 255, 255, 255
         self.bullets_allowed = 3
         
-        # Настройки пришельцев
+        # Alien settings
         self.fleet_drop_speed = 10
         
-        # Темп ускорения игры
+        # Game acceleration rate
         self.speedup_scale = 1.1
-        # Темп роста стоимости пришельцев
+        # Alien value growth rate
         self.score_scale = 1.1
         self.initialize_dynamic_settings()
         
     def initialize_dynamic_settings(self):
-        """Инициализирует настройки, изменяющиеся в ходе игры."""
+        """Initializes settings that change during the game."""
         self.ship_speed_factor = 0.4
         self.bullet_speed_factor = 0.6
         self.alien_speed_factor = 0.3
-        # fleet_direction = 1 обозначает движение вправо; а -1 - влево.
+        # fleet_direction = 1 denotes movement to the right; -1 - left.
         self.fleet_direction = 1
-        # Подсчет очков
+        # Scoring
         self.alien_points = 50
         
     def increase_speed(self):
-        """Увеличивает настройки скорости."""
+        """Increases speed settings."""
         self.ship_speed_factor *= self.speedup_scale
         self.bullet_speed_factor *= self.speedup_scale
         self.alien_speed_factor *= self.speedup_scale
         self.alien_points = int(self.alien_points * self.score_scale)
-       
